@@ -1,0 +1,15 @@
+{
+  "name": "ai-software-engineer-assignment-ts",
+  "version": "1.0.0",
+  "description": "AI JS/TS Code Review Assignment",
+  "type": "commonjs",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "chai": "6.2.2"
+  },
+  "devDependencies": {
+    "vitest": "4.0.18"
+  }
+}
