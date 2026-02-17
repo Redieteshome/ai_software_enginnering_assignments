@@ -1,64 +1,78 @@
-# AI Experts Assignment (JS/TS)
+# AI Software Engineer Assignment (JS/TS)
 
-This assignment evaluates your ability to:
+This repository contains the solution for the AI JS/TS Code Review Assignment at Eskalate.
 
-- set up a small JavaScript/TypeScript project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+It demonstrates:
 
-## What you will do
+- Running a small JavaScript/TypeScript project reliably (locally + in Docker).
 
-### 1) Dockerfile (required)
+- Pinning dependencies for reproducible installs.
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+- Writing focused tests that reproduce a bug.
 
-Requirements:
+- Implementing a minimal, reviewable fix.
 
-- Your Docker image must run the test suite by default using npm test.
-- Ensure npm test works in a clean environment (Docker) without manual steps.
-- The build must install dependencies from package.json using npm install.
-- The image must run tests by default (use: `CMD ["npm", "test"]`).
+## Prerequisites
 
-### 2) Pin dependencies (required)
+- Node.js and npm installed locally.
 
-- Pin dependency versions in package.json (no ^ / ~; use exact x.y.z).
-- Do not commit lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml).
+- Git installed.
 
-### 3) README updates (required)
+- Docker installed (for CI-style environment).
 
-Update this README to include:
+## Running the tests locally
+  
+### Clone this repository:
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+`git clone https://github.com/Redieteshome/ai_software_enginnering_assignments.git `
 
-### 4) Find + fix a bug (required)
+`cd ai-software-engineer-assignment-ts`
 
-There is a bug somewhere in this repository.
 
-Your tasks:
 
-- Identify the bug through reading code and/or running tests.
-- Write tests that reproduce the bug (tests should fail on the current code).
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+1. Install dependencies:
+   - `npm install`
+2. Run the test suite:
+   - `npm test`
 
-## Constraints
+All tests should pass, including the edge case for plain object tokens.
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
+### Running Tests with Docker
 
-### 5) EXPLANATION.md (required)
+Note: Docker Desktop required for local Docker builds.
 
-Create `EXPLANATION.md` (max 250 words) containing:
+- Build the Docker image:
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
+`docker build -t eskalate-assignment .`
 
-## Submission
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+- Run the tests inside the container:
+
+`docker run --rm eskalate-assignment`
+
+
+The tests run automatically via the CMD `["npm", "test"]` instruction.
+
+## Pinning Dependencies
+
+- All dependencies in `package.json` are pinned to exact versions.
+
+- No lockfiles `(package-lock.json, yarn.lock)` are committed to ensure reproducible installs in Docker.
+
+## Bug Fix
+
+- The original HttpClient class did not refresh tokens that were plain objects.
+
+- The fix ensures the token is refreshed whenever it’s not an OAuth2Token instance or if it has expired.
+
+- Tests reproduce the bug and validate the fix.
+
+## Notes
+
+ - Changes are minimal and reviewable.
+
+- No unrelated refactors were applied.
+
+- Tests cover the main bug and key edge cases.
+
+- See `EXPLANATION.md` for a concise reasoning of the bug and fix.
